@@ -156,5 +156,5 @@ class ST7735B(displayio.Display):
 class MINI160x80(displayio.Display):
     """ST7735 driver for MINI160x80"""
     def __init__(self, bus):
-        init_sequence = _INIT_R1 + _INIT_R2_GREEN_160X80 + _INIT_R3 + _INIT_ROTATE_160x80
+        init_sequence = _INIT_R1 + _INIT_R2_GREEN_160X80 + _INIT_R3 + _INIT_ROTATE_160X80
         super().__init__(bus, init_sequence, width=160, height=80, rowstart=24)
