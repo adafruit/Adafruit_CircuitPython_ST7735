@@ -29,6 +29,7 @@ Usage Example
 =============
 
 .. code-block:: python
+
     import adafruit_st7735
     import board
     import busio
