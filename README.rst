@@ -13,7 +13,7 @@ Introduction
     :target: https://travis-ci.com/adafruit/Adafruit_CircuitPython_ST7735
     :alt: Build Status
 
-displayio driver for ST7735 TFT-LCD displays.
+displayio driver for ST7735 and ST7789 TFT-LCD displays.
 
 Dependencies
 =============

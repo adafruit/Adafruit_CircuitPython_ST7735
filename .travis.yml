@@ -27,7 +27,7 @@ install:
   - pip install --force-reinstall pylint==1.9.2
 
 script:
-  - pylint adafruit_st7735.py
+  - pylint adafruit_st7735/*.py
   - ([[ ! -d "examples" ]] || pylint --disable=missing-docstring,invalid-name,bad-whitespace examples/*.py)
   - circuitpython-build-bundles --filename_prefix adafruit-circuitpython-st7735 --library_location .
   - cd docs && sphinx-build -E -W -b html . _build/html && cd ..
