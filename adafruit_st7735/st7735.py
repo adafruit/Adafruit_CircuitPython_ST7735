@@ -125,7 +125,7 @@ _INIT_R3 = (
     b"\x29\x80\x64" # _DISPON
 )
 
-_INIT_ROTATE_160x80 = (
+_INIT_ROTATE_160X80 = (
     b"\x36\x01\x68" # _MADCTL Rotate to Landscape Mode
 )
 
@@ -133,20 +133,20 @@ _INIT_ROTATE_160x80 = (
 class ST7735(displayio.Display):
     """ST7735 driver for ST7735R Green tabs"""
     def __init__(self, bus, *, width, height):
-        _INIT_SEQUENCE = _INIT_R1 + _INIT_R2_GREEN + _INIT_R3
-        super().__init__(bus, _INIT_SEQUENCE, width=width, height=height, colstart=2, rowstart=1)
+        init_sequence = _INIT_R1 + _INIT_R2_GREEN + _INIT_R3
+        super().__init__(bus, init_sequence, width=width, height=height, colstart=2, rowstart=1)
 
 class ST7735R_GREEN144(displayio.Display):
     """ST7735 driver for ST7735R Green tabs 1.44-inch"""
     def __init__(self, bus, *, width, height):
-        _INIT_SEQUENCE = _INIT_R1 + _INIT_R2_GREEN + _INIT_R3
-        super().__init__(bus, _INIT_SEQUENCE, width=width, height=height, colstart=2, rowstart=3)
+        init_sequence = _INIT_R1 + _INIT_R2_GREEN + _INIT_R3
+        super().__init__(bus, init_sequence, width=width, height=height, colstart=2, rowstart=3)
 
 class ST7735R_RED(displayio.Display):
     """ST7735 driver for ST7735R Red tabs"""
     def __init__(self, bus, *, width, height):
-        _INIT_SEQUENCE = _INIT_R1 + _INIT_R2_RED + _INIT_R3
-        super().__init__(bus, _INIT_SEQUENCE, width=width, height=height)
+        init_sequence = _INIT_R1 + _INIT_R2_RED + _INIT_R3
+        super().__init__(bus, init_sequence, width=width, height=height)
 
 class ST7735B(displayio.Display):
     """ST7735 driver for ST7735B"""
@@ -156,5 +156,5 @@ class ST7735B(displayio.Display):
 class MINI160x80(displayio.Display):
     """ST7735 driver for MINI160x80"""
     def __init__(self, bus):
-        _INIT_SEQUENCE = _INIT_R1 + _INIT_R2_GREEN_160X80 + _INIT_R3 + _INIT_ROTATE_160x80
-        super().__init__(bus, _INIT_SEQUENCE, width=160, height=80, rowstart=24)
+        init_sequence = _INIT_R1 + _INIT_R2_GREEN_160X80 + _INIT_R3 + _INIT_ROTATE_160x80
+        super().__init__(bus, init_sequence, width=160, height=80, rowstart=24)
