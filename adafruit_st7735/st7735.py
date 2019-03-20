@@ -129,7 +129,8 @@ _INIT_ROTATE_160x80 = (
     b"\x36\x01\x68" # _MADCTL Rotate to Landscape Mode
 )
 
-class ST7735R_GREEN(displayio.Display):
+# pylint: disable=too-few-public-methods
+class ST7735(displayio.Display):
     """ST7735 driver for ST7735R Green tabs"""
     def __init__(self, bus, *, width, height):
         _INIT_SEQUENCE = _INIT_R1 + _INIT_R2_GREEN + _INIT_R3
@@ -154,6 +155,6 @@ class ST7735B(displayio.Display):
 
 class MINI160x80(displayio.Display):
     """ST7735 driver for MINI160x80"""
-    def __init__(self, bus, *):
+    def __init__(self, bus):
         _INIT_SEQUENCE = _INIT_R1 + _INIT_R2_GREEN_160X80 + _INIT_R3 + _INIT_ROTATE_160x80
         super().__init__(bus, _INIT_SEQUENCE, width=160, height=80, rowstart=24)

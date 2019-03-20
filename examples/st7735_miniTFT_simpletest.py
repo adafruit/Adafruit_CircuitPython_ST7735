@@ -1,7 +1,10 @@
+"""
+This example will test out the display on the Mini TFT FeatherWing
+"""
 import board
 import displayio
 from adafruit_seesaw.seesaw import Seesaw
-from adafruit_st7735 import st7735
+import adafruit_st7735.st7735 as st7735
 
 reset_pin = 8
 i2c = board.I2C()
