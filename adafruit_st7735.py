@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 """
-`adafruit_st7735.st7735`
+`adafruit_st7735`
 ====================================================
 
 Displayio driver for ST7735 based displays.
@@ -126,7 +126,7 @@ _INIT_R3 = (
 )
 
 _INIT_R4_GREEN_160X80 = (
-    b"\x36\x01\x68" # _MADCTL Rotate to Landscape Mode
+    b"\x36\x01\x60" # _MADCTL Rotate to Landscape Mode
 )
 
 _INIT_R4_BLACK = (
