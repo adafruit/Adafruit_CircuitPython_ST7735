@@ -20,7 +20,7 @@ display = ST7735(display_bus, width=128, height=128)
 splash = displayio.Group(max_size=10)
 display.show(splash)
 
-color_bitmap = displayio.Bitmap(320, 240, 1)
+color_bitmap = displayio.Bitmap(128, 128, 1)
 color_palette = displayio.Palette(1)
 color_palette[0] = 0xFF0000
 

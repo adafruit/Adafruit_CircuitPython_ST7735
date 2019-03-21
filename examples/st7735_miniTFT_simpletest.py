@@ -25,7 +25,7 @@ display = MINI160X80(display_bus)
 splash = displayio.Group(max_size=10)
 display.show(splash)
 
-color_bitmap = displayio.Bitmap(320, 240, 1)
+color_bitmap = displayio.Bitmap(160, 80, 1)
 color_palette = displayio.Palette(1)
 color_palette[0] = 0xFF0000
 
