@@ -13,7 +13,7 @@ Introduction
     :target: https://travis-ci.com/adafruit/Adafruit_CircuitPython_ST7735
     :alt: Build Status
 
-displayio driver for ST7735 and ST7789 TFT-LCD displays.
+displayio driver for ST7735 TFT-LCD displays.
 
 Dependencies
 =============
@@ -30,7 +30,7 @@ Usage Example
 
 .. code-block:: python
 
-    import adafruit_st7735
+    from adafruit_st7735 import ST7735
     import board
     import busio
     import displayio
@@ -40,7 +40,7 @@ Usage Example
 
     spi = busio.SPI(board.SCL, board.SDA)
     bus = displayio.FourWire(spi, chip_select=board.D9, command=board.D7, reset=board.D8)
-    display = adafruit_st7735.ST7735(bus, width=128, height=128)
+    display = ST7735(bus, width=128, height=128)
 
     s = displayio.Shape(10, 10)
     p = displayio.Palette(2)
