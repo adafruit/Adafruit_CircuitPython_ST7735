@@ -31,7 +31,6 @@ Table of Contents
     1.8" Color TFT LCD display with MicroSD Card Breakout <https://www.adafruit.com/product/358>
     Adafruit 1.44" Color TFT LCD Display with MicroSD Card breakout <https://www.adafruit.com/product/2088>
     Adafruit Mini Color TFT with Joystick FeatherWing <https://www.adafruit.com/product/3321>
-    Adafruit 1.54" 240x240 Wide Angle TFT LCD Display with MicroSD <https://www.adafruit.com/product/3787>
 
 .. toctree::
     :caption: Other Links
