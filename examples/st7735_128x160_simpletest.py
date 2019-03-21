@@ -15,7 +15,7 @@ tft_dc = board.D6
 displayio.release_displays()
 display_bus = displayio.FourWire(spi, command=tft_dc, chip_select=tft_cs, reset=board.D9)
 
-display = st7735.ST7735(display_bus, width=128, height=128)
+display = st7735.ST7735R_BLACK(display_bus, width=128, height=160)
 
 # Make the display context
 splash = displayio.Group(max_size=10)

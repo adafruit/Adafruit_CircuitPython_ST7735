@@ -125,36 +125,46 @@ _INIT_R3 = (
     b"\x29\x80\x64" # _DISPON
 )
 
-_INIT_ROTATE_160X80 = (
+_INIT_R4_GREEN_160x80 = (
     b"\x36\x01\x68" # _MADCTL Rotate to Landscape Mode
+)
+
+_INIT_R4_BLACK = (
+    b"\x36\x01\xC0" # _MADCTL Rotate to Landscape Mode
 )
 
 # pylint: disable=too-few-public-methods
 class ST7735(displayio.Display):
     """ST7735 driver for ST7735R Green tabs"""
     def __init__(self, bus, *, width, height):
-        init_sequence = _INIT_R1 + _INIT_R2_GREEN + _INIT_R3
-        super().__init__(bus, init_sequence, width=width, height=height, colstart=2, rowstart=1)
+        _INIT_SEQUENCE = _INIT_R1 + _INIT_R2_GREEN + _INIT_R3
+        super().__init__(bus, _INIT_SEQUENCE, width=width, height=height, colstart=2, rowstart=1)
 
 class ST7735R_GREEN144(displayio.Display):
     """ST7735 driver for ST7735R Green tabs 1.44-inch"""
     def __init__(self, bus, *, width, height):
-        init_sequence = _INIT_R1 + _INIT_R2_GREEN + _INIT_R3
-        super().__init__(bus, init_sequence, width=width, height=height, colstart=2, rowstart=3)
+        _INIT_SEQUENCE = _INIT_R1 + _INIT_R2_GREEN + _INIT_R3
+        super().__init__(bus, _INIT_SEQUENCE, width=width, height=height, colstart=2, rowstart=3)
 
 class ST7735R_RED(displayio.Display):
     """ST7735 driver for ST7735R Red tabs"""
     def __init__(self, bus, *, width, height):
-        init_sequence = _INIT_R1 + _INIT_R2_RED + _INIT_R3
-        super().__init__(bus, init_sequence, width=width, height=height)
+        _INIT_SEQUENCE = _INIT_R1 + _INIT_R2_RED + _INIT_R3
+        super().__init__(bus, _INIT_SEQUENCE, width=width, height=height)
+
+class ST7735R_BLACK(displayio.Display):
+    """ST7735 driver for ST7735R Red tabs"""
+    def __init__(self, bus, *, width, height):
+        _INIT_SEQUENCE = _INIT_R1 + _INIT_R2_RED + _INIT_R3 + _INIT_R4_BLACK
+        super().__init__(bus, _INIT_SEQUENCE, width=width, height=height)
 
 class ST7735B(displayio.Display):
     """ST7735 driver for ST7735B"""
     def __init__(self, bus, *, width, height):
         super().__init__(bus, _INIT_SEQUENCE_B, width=width, height=height)
 
-class MINI160x80(displayio.Display):
+class MINI160X80(displayio.Display):
     """ST7735 driver for MINI160x80"""
     def __init__(self, bus):
-        init_sequence = _INIT_R1 + _INIT_R2_GREEN_160X80 + _INIT_R3 + _INIT_ROTATE_160X80
-        super().__init__(bus, init_sequence, width=160, height=80, rowstart=24)
+        _INIT_SEQUENCE = _INIT_R1 + _INIT_R2_GREEN_160X80 + _INIT_R3 + _INIT_R4_GREEN_160x80
+        super().__init__(bus, _INIT_SEQUENCE, width=160, height=80, rowstart=24)
