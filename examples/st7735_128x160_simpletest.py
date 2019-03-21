@@ -5,7 +5,6 @@ and draw a solid red background
 
 import board
 import displayio
-from adafruit_seesaw.seesaw import Seesaw
 import adafruit_st7735.st7735 as st7735
 
 spi = board.SPI()
