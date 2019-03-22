@@ -3,8 +3,9 @@ This example will test out the display on the Mini TFT FeatherWing
 """
 import board
 import displayio
+import digitalio
 from adafruit_seesaw.seesaw import Seesaw
-from adafruit_st7735 import MINI160X80
+from adafruit_st7735.st7735r import ST7735R
 
 reset_pin = 8
 i2c = board.I2C()
@@ -19,7 +20,7 @@ displayio.release_displays()
 display_bus = displayio.FourWire(spi, command=tft_dc, chip_select=tft_cs, reset=board.D9)
 
 ss.digital_write(reset_pin, True)
-display = MINI160X80(display_bus)
+display = ST7735R(display_bus, width=160, height=80, rowstart=24, init=b"\x36\x01\x60")
 
 # Make the display context
 splash = displayio.Group(max_size=10)
