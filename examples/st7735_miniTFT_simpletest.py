@@ -3,7 +3,6 @@ This example will test out the display on the Mini TFT FeatherWing
 """
 import board
 import displayio
-import digitalio
 from adafruit_seesaw.seesaw import Seesaw
 from adafruit_st7735.st7735r import ST7735R
 
