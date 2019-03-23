@@ -1,9 +1,15 @@
 """
-This example will test out the display on the Mini TFT Breakout
+This example will test out the display on the Mini TFT FeatherWing
 """
 import board
 import displayio
+from adafruit_seesaw.seesaw import Seesaw
 from adafruit_st7735.st7735r import ST7735R
+
+reset_pin = 8
+i2c = board.I2C()
+ss = Seesaw(i2c, 0x5E)
+ss.pin_mode(reset_pin, ss.OUTPUT)
 
 spi = board.SPI()
 tft_cs = board.D5
@@ -12,6 +18,7 @@ tft_dc = board.D6
 displayio.release_displays()
 display_bus = displayio.FourWire(spi, command=tft_dc, chip_select=tft_cs, reset=board.D9)
 
+ss.digital_write(reset_pin, True)
 display = ST7735R(display_bus, width=160, height=80, rowstart=24, init=b"\x36\x01\x60")
 
 # Make the display context
