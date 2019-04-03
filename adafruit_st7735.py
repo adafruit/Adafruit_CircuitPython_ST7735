@@ -1,6 +1,7 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2019 Scott Shawcroft for Adafruit Industries LLC
+# Copyright (c) 2019 Scott Shawcroft and Melissa LeBlanc-Williams
+#                    for Adafruit Industries LLC
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +21,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 """
-`adafruit_ST7735`
+`adafruit_st7735`
 ====================================================
 
 Displayio driver for ST7735 based displays.
 
-* Author(s): Scott Shawcroft
+* Author(s): Melissa LeBlanc-Williams
 
 Implementation Notes
 --------------------
 
 **Hardware:**
-
-.. todo:: Add links to any specific hardware product page(s), or category page(s). Use unordered list & hyperlink rST
-   inline format: "* `Link Text <url>`_"
 
 **Software and Dependencies:**
 
@@ -47,35 +45,28 @@ import displayio
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_ST7735.git"
 
-
 _INIT_SEQUENCE = (
-    b"\x01\x80\x96" # SWRESET
-    b"\x11\x80\xff" # SLPOUT
-    b"\xb1\x03\x01\x2C\x2D" # _FRMCTR1
-    b"\xb2\x03\x01\x2C\x2D" #
-    b"\xb3\x06\x01\x2C\x2D\x01\x2C\x2D"
-    b"\xb4\x01\x07" # _INVCTR line inversion
-    b"\xc0\x03\xa2\x02\x84" # _PWCTR1 GVDD = 4.7V, 1.0uA
-    b"\xc1\x01\xc5" # _PWCTR2 VGH=14.7V, VGL=-7.35V
-    b"\xc2\x02\x0a\x00" # _PWCTR3 Opamp current small, Boost frequency
-    b"\xc3\x02\x8a\x2a"
-    b"\xc4\x02\x8a\xee"
-    b"\xc5\x01\x0e" # _VMCTR1 VCOMH = 4V, VOML = -1.1V
-    b"\x2a\x00" # _INVOFF
-    b"\x36\x01\x18" # _MADCTL bottom to top refresh
-    # 1 clk cycle nonoverlap, 2 cycle gate rise, 3 sycle osc equalie,
-    # fix on VTL
-    b"\x3a\x01\x05" # COLMOD - 16bit color
-    b"\xe0\x10\x02\x1c\x07\x12\x37\x32\x29\x2d\x29\x25\x2B\x39\x00\x01\x03\x10" # _GMCTRP1 Gamma
-    b"\xe1\x10\x03\x1d\x07\x06\x2E\x2C\x29\x2D\x2E\x2E\x37\x3F\x00\x00\x02\x10" # _GMCTRN1
-    b"\x2a\x03\x02\x00\x81" # _CASET XSTART = 2, XEND = 129
-    b"\x2b\x03\x02\x00\x81" # _RASET XSTART = 2, XEND = 129
+    b"\x01\x80\x32" # _SWRESET and Delay 50ms
+    b"\x11\x80\xFF" # _SLPOUT
+    b"\x3A\x81\x05\x0A" # _COLMOD
+    b"\xB1\x83\x00\x06\x03\x0A" # _FRMCTR1
+    b"\x36\x01\x08" # _MADCTL
+    b"\xB6\x02\x15\x02" # _DISSET5
+    #1 clk cycle nonoverlap, 2 cycle gate, rise, 3 cycle osc equalize, Fix on VTL
+    b"\xB4\x01\x00" # _INVCTR line inversion
+    b"\xC0\x82\x02\x70\x0A" # _PWCTR1 GVDD = 4.7V, 1.0uA, 10 ms delay
+    b"\xC1\x01\x05" # _PWCTR2 VGH = 14.7V, VGL = -7.35V
+    b"\xC2\x02\x01\x02" # _PWCTR3 Opamp current small, Boost frequency
+    b"\xC5\x82\x3C\x38\x0A" # _VMCTR1
+    b"\xFC\x02\x11\x15" # _PWCTR6
+    b"\xE0\x10\x09\x16\x09\x20\x21\x1B\x13\x19\x17\x15\x1E\x2B\x04\x05\x02\x0E" # _GMCTRP1 Gamma
+    b"\xE1\x90\x0B\x14\x08\x1E\x22\x1D\x18\x1E\x1B\x1A\x24\x2B\x06\x06\x02\x0F\x0A" # _GMCTRN1
     b"\x13\x80\x0a" # _NORON
-    b"\x29\x80\x64" # _DISPON
+    b"\x29\x80\xFF" # _DISPON
 )
 
+# pylint: disable=too-few-public-methods
 class ST7735(displayio.Display):
-    """ST7735 driver for ST7735R Green tabs"""
-    # TODO(tannewt): Add support for Red tabs and non-R chips. https://github.com/adafruit/Adafruit-ST7735-Library/blob/master/Adafruit_ST7735.cpp
-    def __init__(self, bus, *, width, height):
-        super().__init__(bus, _INIT_SEQUENCE, width=width, height=height, colstart=2)
+    """ST7735 driver"""
+    def __init__(self, bus, **kwargs):
+        super().__init__(bus, _INIT_SEQUENCE, **kwargs)

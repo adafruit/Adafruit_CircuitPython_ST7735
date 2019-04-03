@@ -29,27 +29,40 @@ Usage Example
 =============
 
 .. code-block:: python
-    import adafruit_st7735
+
     import board
-    import busio
     import displayio
-    import time
+    from adafruit_st7735 import ST7735
+
+    spi = board.SPI()
+    tft_cs = board.D5
+    tft_dc = board.D6
 
     displayio.release_displays()
+    display_bus = displayio.FourWire(spi, command=tft_dc, chip_select=tft_cs, reset=board.D9)
 
-    spi = busio.SPI(board.SCL, board.SDA)
-    bus = displayio.FourWire(spi, chip_select=board.D9, command=board.D7, reset=board.D8)
-    display = adafruit_st7735.ST7735(bus, width=128, height=128)
+    display = ST7735(display_bus, width=128, height=128)
 
-    s = displayio.Shape(10, 10)
-    p = displayio.Palette(2)
-    p[1] = 0xff0000
-    s = displayio.Sprite(s, pixel_shader=p, position=(0,0))
-    everything = displayio.Group(max_size=10)
-    everything.append(s)
-    display.show(everything)
+    # Make the display context
+    splash = displayio.Group(max_size=10)
+    display.show(splash)
 
-    time.sleep(10)
+    color_bitmap = displayio.Bitmap(128, 128, 1)
+    color_palette = displayio.Palette(1)
+    color_palette[0] = 0xFF0000
+
+    try:
+        bg_sprite = displayio.TileGrid(color_bitmap,
+                                       pixel_shader=color_palette,
+                                       position=(0, 0))
+    except TypeError:
+        bg_sprite = displayio.TileGrid(color_bitmap,
+                                       pixel_shader=color_palette,
+                                       x=0, y=0)
+    splash.append(bg_sprite)
+
+    while True:
+        pass
 
 Contributing
 ============
