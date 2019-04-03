@@ -32,7 +32,7 @@ Usage Example
 
     import board
     import displayio
-    from adafruit_st7735.st7735r import ST7735R
+    from adafruit_st7735 import ST7735
 
     spi = board.SPI()
     tft_cs = board.D5
@@ -41,7 +41,7 @@ Usage Example
     displayio.release_displays()
     display_bus = displayio.FourWire(spi, command=tft_dc, chip_select=tft_cs, reset=board.D9)
 
-    display = ST7735R(display_bus, width=128, height=128, colstart=2, rowstart=1)
+    display = ST7735(display_bus, width=128, height=128)
 
     # Make the display context
     splash = displayio.Group(max_size=10)

@@ -21,10 +21,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 """
-`adafruit_st7735.st7735b`
+`adafruit_st7735`
 ====================================================
 
-Displayio driver for ST7735B based displays.
+Displayio driver for ST7735 based displays.
 
 * Author(s): Melissa LeBlanc-Williams
 
@@ -66,7 +66,7 @@ _INIT_SEQUENCE = (
 )
 
 # pylint: disable=too-few-public-methods
-class ST7735B(displayio.Display):
-    """ST7735 driver for ST7735B"""
+class ST7735(displayio.Display):
+    """ST7735 driver"""
     def __init__(self, bus, **kwargs):
         super().__init__(bus, _INIT_SEQUENCE, **kwargs)
