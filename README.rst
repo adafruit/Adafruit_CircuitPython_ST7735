@@ -13,7 +13,15 @@ Introduction
     :target: https://travis-ci.com/adafruit/Adafruit_CircuitPython_ST7735
     :alt: Build Status
 
-displayio driver for ST7735 TFT-LCD displays.
+displayio driver for ST7735B TFT-LCD displays.
+
+Hardware
+=========
+
+This driver does not work for any current Adafruit Displays and was created using initilization
+codes from the Arduino Library. If you have a newer Adafruit Display with a ST7735R or ST7735S chip, 
+please visit `the Adafruit ST7735R Driver <https://github.com/adafruit/Adafruit_CircuitPython_ST7735R>`_.
+
 
 Dependencies
 =============
