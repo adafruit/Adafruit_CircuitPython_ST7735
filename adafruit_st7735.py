@@ -48,6 +48,7 @@ _INIT_SEQUENCE = (
     b"\x29\x80\xFF"  # _DISPON
 )
 
+
 # pylint: disable=too-few-public-methods
 class ST7735(displayio.Display):
     """ST7735 driver"""
