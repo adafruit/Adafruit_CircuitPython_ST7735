@@ -25,7 +25,7 @@ display = ST7735(display_bus, width=128, height=128)
 
 # Make the display context
 splash = displayio.Group()
-display.show(splash)
+display.root_group = splash
 
 color_bitmap = displayio.Bitmap(128, 128, 1)
 color_palette = displayio.Palette(1)
