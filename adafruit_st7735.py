@@ -23,7 +23,14 @@ Implementation Notes
 
 """
 
-import displayio
+import busdisplay
+
+try:
+    import typing
+
+    import fourwire
+except ImportError:
+    pass
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_ST7735.git"
@@ -49,8 +56,8 @@ _INIT_SEQUENCE = (
 )
 
 
-class ST7735(displayio.Display):
+class ST7735(busdisplay.BusDisplay):
     """ST7735 driver"""
 
-    def __init__(self, bus: displayio.FourWire, **kwargs) -> None:
+    def __init__(self, bus: fourwire.FourWire, **kwargs) -> None:
         super().__init__(bus, _INIT_SEQUENCE, **kwargs)
